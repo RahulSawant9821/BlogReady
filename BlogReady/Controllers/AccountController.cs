@@ -31,7 +31,7 @@ namespace BlogReady.Controllers
                 if(result.Succeeded) {
                 
                    await signInManager.SignInAsync(user, isPersistent: false);
-                    return RedirectToAction("index", "home");
+                    return RedirectToAction("index", "BlogPosts");
                 }
 
                 foreach(var errors in result.Errors)

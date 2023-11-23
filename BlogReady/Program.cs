@@ -2,6 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using BlogReady.Data;
 using System.Configuration;
+using Microsoft.AspNetCore.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'KuickResDBContextConnection' not found.");
@@ -10,6 +11,8 @@ builder.Services.AddDbContext<BlogDBContext>(options =>
     options.UseSqlite(connectionString));
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddIdentity<IdentityUser, IdentityRole>()
+    .AddEntityFrameworkStores<BlogDBContext>();
 
 var app = builder.Build();
 
@@ -27,7 +30,7 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
-
+app.UseAuthentication();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");

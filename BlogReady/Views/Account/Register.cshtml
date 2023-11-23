@@ -1,0 +1,67 @@
+﻿@model BlogReady.ViewModel.RegisterViewModel
+
+<form asp-action="Register" method="post" class="needs-validation" novalidate>
+    <div class="mb-3">
+        <label for="FirstName" class="form-label">First Name</label>
+        <input type="text" class="form-control" id="FirstName" name="FirstName" required>
+        <div class="invalid-feedback">
+            Please enter your first name.
+        </div>
+    </div>
+
+    <div class="mb-3">
+        <label for="LastName" class="form-label">Last Name</label>
+        <input type="text" class="form-control" id="LastName" name="LastName" >
+    </div>
+
+    <div class="mb-3">
+        <label for="Email" class="form-label">Email</label>
+        <input type="email" class="form-control" id="Email" name="Email"  required>
+        <div class="invalid-feedback">
+            Please enter a valid email address.
+        </div>
+    </div>
+
+    <div class="mb-3">
+        <label for="Password" class="form-label">Password</label>
+        <input type="password" class="form-control" id="Password" name="Password" required>
+        <div class="invalid-feedback">
+            Please enter a password.
+        </div>
+    </div>
+
+    <div class="mb-3">
+        <label for="ConfirmPassword" class="form-label">Confirm Password</label>
+        <input type="password" class="form-control" id="ConfirmPassword" name="ConfirmPassword" required>
+        <div class="invalid-feedback">
+            Please confirm your password.
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Register</button>
+</form>
+
+@section Scripts {
+    <script>
+        // Disable form validation styles in browsers, as we're using Bootstrap's validation styles
+        (function () {
+            'use strict';
+
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            var forms = document.querySelectorAll('.needs-validation');
+
+            // Loop over them and prevent submission
+            Array.prototype.slice.call(forms)
+                .forEach(function (form) {
+                    form.addEventListener('submit', function (event) {
+                        if (!form.checkValidity()) {
+                            event.preventDefault();
+                            event.stopPropagation();
+                        }
+
+                        form.classList.add('was-validated');
+                    }, false);
+                });
+        })();
+    </script>
+}

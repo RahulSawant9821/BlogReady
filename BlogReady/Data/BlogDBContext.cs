@@ -15,6 +15,11 @@ namespace BlogReady.Data
         {
         }
 
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            base.OnModelCreating(builder);
+        }
+       
         public DbSet<BlogReady.Models.BlogPost> BlogPost { get; set; } = default!;
     }
 }
